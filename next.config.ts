@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // You might not need the experimental.appDir setting for newer Next.js versions
+  // as the App Router is now the default
 };
 
-export default nextConfig;
+module.exports = nextConfig;
