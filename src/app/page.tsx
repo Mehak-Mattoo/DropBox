@@ -2,9 +2,8 @@ import HomePage from "@/components/home/homepage";
 import LoadingPage from "../components/loading/LoadingPage";
 import logo from "../../public/images/dropboxlogo.png";
 
-
-// src/app/page.tsx
-export default function Home({ children }: { children: React.ReactNode }) {
+// Remove the children prop from the function signature
+export default function Home() {
   return (
     <>
       <LoadingPage
@@ -13,10 +12,8 @@ export default function Home({ children }: { children: React.ReactNode }) {
         backgroundColor="#f5f5f5"
         logoSrc={logo.src}
       >
-        {children}
+        <HomePage />
       </LoadingPage>
-
-      <HomePage />
     </>
   );
 }

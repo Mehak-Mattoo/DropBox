@@ -106,6 +106,7 @@ const Homepage: React.FC = () => {
         ))}
       </div>
 
+
       {isZoomedOut ? (
         // Zoomed out view - Website sections overview
         <motion.div
@@ -114,6 +115,7 @@ const Homepage: React.FC = () => {
           className="w-full h-full"
         >
           <div className="relative space-y-3">
+        
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               <Framework />
               <VoiceAndTone />
