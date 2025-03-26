@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { div } from "framer-motion/client";
 import { useState } from "react";
 
 const VoiceAndTone = () => {

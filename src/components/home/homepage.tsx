@@ -2,16 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import {
-  FolderIcon,
-  ContactIcon,
-  ChevronDownIcon,
-  HomeIcon,
-  BookOpenIcon,
-  MessageCircleIcon,
-  InfoIcon,
-  MailIcon,
-} from "lucide-react";
+
 import blueLogo from "../../../public/images/dropboxlogo.png";
 import whiteLogo from "../../../public/images/dropboxwhite.png";
 import Iconography from "./sections/Iconography";
@@ -63,97 +54,13 @@ const Homepage: React.FC = () => {
     },
   ];
 
-  // Enhanced sections with more interactive properties
-  const websiteSections: SectionItem[] = [
-    {
-      title: "Framework",
-      description: "Our visual identity system",
-      defaultBgColor: "#283750",
-      hoverBgColor: "#000000",
-      defaultTextColor: "text-white",
-      hoverTextColor: "text-white",
-      defaultIcon: FolderIcon,
-      hoverIcon: BookOpenIcon,
-    },
-    {
-      title: "Voice & Tone",
-      description: "Explore our solutions",
-      defaultBgColor: "#fad24b",
-      hoverBgColor: "#000000",
-      defaultTextColor: "#684505",
-      hoverTextColor: "text-white",
-      defaultIcon: FolderIcon,
-      hoverIcon: HomeIcon,
-    },
-    {
-      title: "Logo",
-      description: "Guides and documentation",
-      defaultBgColor: "#3dd3ee",
-      hoverBgColor: "#000000",
-      defaultTextColor: "#055463",
-      hoverTextColor: "text-white",
-      defaultIcon: FolderIcon,
-      hoverIcon: ChevronDownIcon,
-    },
-    {
-      title: "Typography",
-      description: "Help and community",
-      defaultBgColor: "#fa551e",
-      hoverBgColor: "#000000",
-      defaultTextColor: "text-white",
-      hoverTextColor: "text-white",
-      defaultIcon: FolderIcon,
-      hoverIcon: MessageCircleIcon,
-    },
-    {
-      title: "Iconography",
-      description: "Our story and mission",
-      defaultBgColor: "#B4DC19",
-      hoverBgColor: "#000000",
-      defaultTextColor: "#175641",
-      hoverTextColor: "text-white",
-      defaultIcon: FolderIcon,
-      hoverIcon: InfoIcon,
-    },
-    {
-      title: "Color",
-      description: "Get in touch with us",
-      defaultBgColor: "#ff8c19",
-      hoverBgColor: "#000000",
-      defaultTextColor: "text-white",
-      hoverTextColor: "text-white",
-      defaultIcon: ContactIcon,
-      hoverIcon: MailIcon,
-    },
 
-    {
-      title: "Imagery",
-      description: "Get in touch with us",
-      defaultBgColor: "#892055",
-      hoverBgColor: "#000000",
-      defaultTextColor: "text-white",
-      hoverTextColor: "text-white",
-      defaultIcon: ContactIcon,
-      hoverIcon: MailIcon,
-    },
-
-    {
-      title: "Motion",
-      description: "Get in touch with us",
-      defaultBgColor: "#c8aff0",
-      hoverBgColor: "#000000",
-      defaultTextColor: "#682760",
-      hoverTextColor: "text-white",
-      defaultIcon: ContactIcon,
-      hoverIcon: MailIcon,
-    },
-  ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isZoomedOut, setIsZoomedOut] = useState(false);
   const [keyPressCount, setKeyPressCount] = useState(0);
-  const [hoveredSection, setHoveredSection] = useState<number | null>(null);
+
 
   // Existing key press effect
   useEffect(() => {
