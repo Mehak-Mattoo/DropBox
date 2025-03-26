@@ -1,12 +1,42 @@
-// components/DropboxStyleComponent.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import {
+  FolderIcon,
+  ContactIcon,
+  ChevronDownIcon,
+  HomeIcon,
+  BookOpenIcon,
+  MessageCircleIcon,
+  InfoIcon,
+  MailIcon,
+} from "lucide-react";
 import blueLogo from "../../../public/images/dropboxlogo.png";
 import whiteLogo from "../../../public/images/dropboxwhite.png";
+import Iconography from "./sections/Iconography";
+import Framework from "./sections/Framework";
+import VoiceAndTone from "./sections/VoiceAndTone";
+import Logo from "./sections/Logo";
+import Typography from "./sections/Typography";
+import Color from "./sections/Color";
+import Imagery from "./sections/Imagery";
+import Motion from "./sections/Motion";
+import DropBox from "./sections/DropBox";
 
-// Define content items type
+// Define more comprehensive section item interface
+interface SectionItem {
+  title: string;
+  description: string;
+  defaultBgColor: string;
+  hoverBgColor: string;
+  defaultTextColor: string;
+  hoverTextColor: string;
+  defaultIcon: React.ElementType;
+  hoverIcon: React.ElementType;
+}
+
+// Content and existing types remain the same as in previous implementation
 interface ContentItem {
   title: string;
   icon: string;
@@ -14,15 +44,8 @@ interface ContentItem {
   textColor: string;
 }
 
-// Mock sections for demonstration
-interface SectionItem {
-  title: string;
-  description: string;
-  color: string;
-}
-
 const Homepage: React.FC = () => {
-  // Array of content items to cycle through
+  // Existing content items
   const contentItems: ContentItem[] = [
     {
       title:
@@ -33,68 +56,123 @@ const Homepage: React.FC = () => {
     },
     {
       title:
-        "From icons to illustration, logos and language, this collection is the foundation for how Dropbox looks, feels and sounds like Dropbox. ",
+        "From icons to illustration, logos and language, this collection is the foundation for how Dropbox looks, feels and sounds like Dropbox.",
       icon: whiteLogo.src,
       bgColor: "bg-blue-500",
       textColor: "text-white",
     },
   ];
 
-  // Sections for the zoomed out view
+  // Enhanced sections with more interactive properties
   const websiteSections: SectionItem[] = [
     {
-      title: "Brand Guidelines",
+      title: "Framework",
       description: "Our visual identity system",
-      color: "#0061fe",
+      defaultBgColor: "#283750",
+      hoverBgColor: "#000000",
+      defaultTextColor: "text-white",
+      hoverTextColor: "text-white",
+      defaultIcon: FolderIcon,
+      hoverIcon: BookOpenIcon,
     },
     {
-      title: "Products",
+      title: "Voice & Tone",
       description: "Explore our solutions",
-      color: "#5A9448",
+      defaultBgColor: "#fad24b",
+      hoverBgColor: "#000000",
+      defaultTextColor: "#684505",
+      hoverTextColor: "text-white",
+      defaultIcon: FolderIcon,
+      hoverIcon: HomeIcon,
     },
     {
-      title: "Resources",
+      title: "Logo",
       description: "Guides and documentation",
-      color: "#8D6A9F",
+      defaultBgColor: "#3dd3ee",
+      hoverBgColor: "#000000",
+      defaultTextColor: "#055463",
+      hoverTextColor: "text-white",
+      defaultIcon: FolderIcon,
+      hoverIcon: ChevronDownIcon,
     },
-    { title: "Support", description: "Help and community", color: "#E03C31" },
     {
-      title: "About Us",
-      description: "Our story and mission",
-      color: "#F7B500",
+      title: "Typography",
+      description: "Help and community",
+      defaultBgColor: "#fa551e",
+      hoverBgColor: "#000000",
+      defaultTextColor: "text-white",
+      hoverTextColor: "text-white",
+      defaultIcon: FolderIcon,
+      hoverIcon: MessageCircleIcon,
     },
-    { title: "Contact", description: "Get in touch with us", color: "#3D4853" },
+    {
+      title: "Iconography",
+      description: "Our story and mission",
+      defaultBgColor: "#B4DC19",
+      hoverBgColor: "#000000",
+      defaultTextColor: "#175641",
+      hoverTextColor: "text-white",
+      defaultIcon: FolderIcon,
+      hoverIcon: InfoIcon,
+    },
+    {
+      title: "Color",
+      description: "Get in touch with us",
+      defaultBgColor: "#ff8c19",
+      hoverBgColor: "#000000",
+      defaultTextColor: "text-white",
+      hoverTextColor: "text-white",
+      defaultIcon: ContactIcon,
+      hoverIcon: MailIcon,
+    },
+
+    {
+      title: "Imagery",
+      description: "Get in touch with us",
+      defaultBgColor: "#892055",
+      hoverBgColor: "#000000",
+      defaultTextColor: "text-white",
+      hoverTextColor: "text-white",
+      defaultIcon: ContactIcon,
+      hoverIcon: MailIcon,
+    },
+
+    {
+      title: "Motion",
+      description: "Get in touch with us",
+      defaultBgColor: "#c8aff0",
+      hoverBgColor: "#000000",
+      defaultTextColor: "#682760",
+      hoverTextColor: "text-white",
+      defaultIcon: ContactIcon,
+      hoverIcon: MailIcon,
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isZoomedOut, setIsZoomedOut] = useState(false);
   const [keyPressCount, setKeyPressCount] = useState(0);
+  const [hoveredSection, setHoveredSection] = useState<number | null>(null);
 
-  // Handle key press
+  // Existing key press effect
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowDown" && !isAnimating) {
         setIsAnimating(true);
 
-        // Increment key press counter
         setKeyPressCount((prev) => prev + 1);
 
         if (keyPressCount === 1) {
-          // On second press, zoom out
           setIsZoomedOut(true);
-          // Reset counter
           setKeyPressCount(0);
         } else {
-          // On first press, change content
           setCurrentIndex((prevIndex) => (prevIndex + 1) % contentItems.length);
         }
 
-        // Reset animation state
         setTimeout(() => setIsAnimating(false), 100);
       }
 
-      // Handle escape to zoom back in
       if (event.key === "Escape" && isZoomedOut) {
         setIsZoomedOut(false);
         setKeyPressCount(0);
@@ -105,7 +183,7 @@ const Homepage: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [contentItems.length, isAnimating, keyPressCount, isZoomedOut]);
 
-  // Animation variants for icon only
+  // Existing icon variants and current item
   const iconVariants = {
     initial: { opacity: 0, scale: 0.8 },
     animate: {
@@ -119,8 +197,8 @@ const Homepage: React.FC = () => {
   const currentItem = contentItems[currentIndex];
 
   return (
-    <motion.div className="relative w-full items-center justify-center h-screen p-8 overflow-hidden">
-      {/* Grid lines - made more visible */}
+    <motion.div className="relative w-full items-center justify-center h-screen p-4 overflow-hidden">
+      {/* Grid lines */}
       <div className="absolute inset-0 grid grid-cols-4 grid-rows-3 w-full h-full pointer-events-none">
         {[...Array(14)].map((_, i) => (
           <div
@@ -137,44 +215,107 @@ const Homepage: React.FC = () => {
           animate={{ opacity: 1 }}
           className="w-full h-full"
         >
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-blue-600">
+          <div className="text-center ">
+            {/* <h1 className="text-3xl font-bold text-blue-600">
               Dropbox Website
-            </h1>
-            <p className="text-gray-600">
+            </h1> */}
+            {/* <p className="text-gray-600">
               Press ESC to return to detailed view
-            </p>
+            </p> */}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 px-4">
-            {websiteSections.map((section, index) => (
-              <motion.div
-                key={`section-${index}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: { delay: index * 0.1 },
-                }}
-                className="border border-gray-200 rounded-lg overflow-hidden shadow-lg h-64"
-              >
-                <div
-                  className="h-24"
-                  style={{ backgroundColor: section.color }}
-                ></div>
-                <div className="p-4">
-                  <h2 className="text-xl font-bold mb-2">{section.title}</h2>
-                  <p className="text-gray-600">{section.description}</p>
-                  <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
-                    Explore
-                  </button>
-                </div>
-              </motion.div>
-            ))}
+          {/* <div className="relative  grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 "> */}
+          {/* {websiteSections.map((section, index) => {
+              const isHovered = hoveredSection === index;
+
+              // Determine current icon based on hover state
+              const CurrentIcon = isHovered
+                ? section.hoverIcon
+                : section.defaultIcon;
+
+              return (
+                <motion.div
+                  key={`section-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: index * 0.3 },
+                  }}
+                  onHoverStart={() => setHoveredSection(index)}
+                  onHoverEnd={() => setHoveredSection(null)}
+                  className=" shadow-lg h-72"
+                  style={{
+                    backgroundColor: isHovered
+                      ? section.hoverBgColor
+                      : section.defaultBgColor,
+                  }}
+                >
+                  <div className="p-4 h-full justify-between">
+                    <div className="flex flex-col justify-between">
+                      <h2
+                        className={`text-2xl font-bold mb-2 ${
+                          isHovered
+                            ? section.hoverTextColor
+                          :
+                          section.defaultTextColor
+                        }`}
+                      >
+                        {section.title}
+                      </h2>
+
+                      <div className="mb-4">
+                        <CurrentIcon
+                          className={`w-12 h-12 ${
+                            isHovered
+                              ? section.hoverTextColor
+                              : section.defaultTextColor
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })} */}
+
+          {/* <div className="relative ">
+            <div className="flex gap-3">
+              <Framework />
+              <VoiceAndTone />
+              <DropBox />
+              <Logo />
+              <Typography />
+            </div>
+            <div className="flex gap-3">
+              <div className="mt-3">
+                <Iconography />
+              </div>
+              <Color />
+              <Imagery />
+              <Motion />
+            </div>
+          </div> */}
+
+          <div className="relative space-y-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <Framework />
+              <VoiceAndTone />
+              <DropBox />
+              <Logo />
+              <Typography />
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <Iconography />
+
+              <Color />
+              <Imagery />
+              <Motion />
+            </div>
           </div>
         </motion.div>
       ) : (
-        // Zoomed in view - Current content item
+        // Zoomed in view - Existing implementation
         <motion.div
           className="relative border border-[#bfd8ff] h-[30rem] p-5 mx-auto w-1/2 flex flex-col justify-between"
           animate={{
@@ -186,22 +327,13 @@ const Homepage: React.FC = () => {
           }}
           transition={{ duration: 0.5 }}
         >
+          {/* Existing zoomed-in content remains the same */}
           <div>
             <h1
               className={`${currentItem.textColor} font-bold leading-10 font-sans`}
             >
               {currentItem.title}
             </h1>
-
-            {keyPressCount === 1 && (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className={`mt-4 text-sm ${currentItem.textColor}`}
-              >
-                Press ↓ again to see all sections
-              </motion.p>
-            )}
           </div>
 
           <div className="flex justify-between items-center w-full">

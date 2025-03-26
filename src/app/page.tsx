@@ -1,7 +1,7 @@
 import HomePage from "@/components/home/homepage";
 import LoadingPage from "../components/loading/LoadingPage";
 import logo from "../../public/images/dropboxlogo.png";
-import Iconography from "@/components/home/Iconography";
+import Iconography from "@/components/home/sections/Iconography";
 
 // src/app/page.tsx
 export default function Home({ children }: { children: React.ReactNode }) {
@@ -15,9 +15,9 @@ export default function Home({ children }: { children: React.ReactNode }) {
       >
         {children}
       </LoadingPage>
-      <Iconography />
+      {/* <Iconography /> */}
 
-      {/* <HomePage /> */}
+      <HomePage />
     </>
   );
 }

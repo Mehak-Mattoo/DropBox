@@ -7,21 +7,24 @@ const Iconography = () => {
 
   return (
     <motion.div
-      className={`p-5 w-1/4 items-center justify-center  cursor-pointer`}
-      initial={{ backgroundColor: "#B4DC19" }} // Initial background color
-      animate={{ backgroundColor: isHovered ? "#00000" : "#4CAF50" }} // Change on hover
-      
+      className={`p-5 h-50 sm:w-84 md:h-45 md:w-98 lg:h-48 lg:w-60 lg:rounded-bl-xl justify-between flex flex-col  cursor-pointer`}
+      initial={{ backgroundColor: "#b4dc19" }} // Initial background color
+      animate={{
+        backgroundColor: isHovered ? "#00000" : "#b4dc19",
+        color: isHovered ? "#ffffff" : "#175641",
+      }} // Change on hover
       transition={{ duration: 0.3 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <h1>Iconography</h1>
+      <h1 className="text-3xl font-bold">Iconography</h1>
       {isHovered ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="74"
           height="74"
           viewBox="0 0 24 24"
+          className="scale-x-[-1]"
         >
           <path
             fill="#fff"
