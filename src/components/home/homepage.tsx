@@ -16,16 +16,7 @@ import Motion from "./sections/Motion";
 import DropBox from "./sections/DropBox";
 
 // Define more comprehensive section item interface
-interface SectionItem {
-  title: string;
-  description: string;
-  defaultBgColor: string;
-  hoverBgColor: string;
-  defaultTextColor: string;
-  hoverTextColor: string;
-  defaultIcon: React.ElementType;
-  hoverIcon: React.ElementType;
-}
+
 
 // Content and existing types remain the same as in previous implementation
 interface ContentItem {

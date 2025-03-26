@@ -67,7 +67,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
 
   const iconSize = size;
   const lineThickness = size / 90;
-  const lineLength = size / 2;
+
 
   return (
     <div
